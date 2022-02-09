@@ -1,6 +1,6 @@
 provider "google" {
   alias   = "gke"
-  project = local.project
+  project = local.project_id
   region  = local.region
 }
 
