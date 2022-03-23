@@ -2,16 +2,16 @@ locals {
   enabled = true
 }
 
-resource "helm_release" "nginx_ingress" {
+resource "helm_release" "demo" {
   count = local.enabled ? 1 : 0
-  name  = "nginx-ingress-controller"
+  name  = "demo"
 
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx-ingress-controller"
+  repository = "https://drdkadtr.github.io/helm-charts/"
+  chart      = "demo"
 
   set {
-    name  = "service.type"
-    value = "ClusterIP"
+    name  = "replicaCount"
+    value = 2
   }
   provider = helm.gke
 }
