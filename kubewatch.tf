@@ -5,11 +5,13 @@ variable "slack_app_token" {
 }
 
 resource "helm_release" "kubewatch" {
-  count      = length(var.slack_app_token) > 1 ? 1 : 0
-  name       = "kubewatch"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "kubewatch"
-  version    = "3.3.4"
+  count            = length(var.slack_app_token) > 1 ? 1 : 0
+  name             = "kubewatch"
+  repository       = "https://charts.bitnami.com/bitnami"
+  chart            = "kubewatch"
+  version          = "3.3.4"
+  create_namespace = true
+  namespace        = "kubewatch"
 
   values = [
     file("${path.module}/values/kubewatch.yaml")
@@ -19,4 +21,5 @@ resource "helm_release" "kubewatch" {
     name  = "slack.token"
     value = var.slack_app_token
   }
+  provider = helm.gke
 }
