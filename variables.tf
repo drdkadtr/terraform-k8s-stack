@@ -1,13 +1,15 @@
-variable "organization" {
-  type        = string
-  description = "Organization of workspace that created the Kubernetes cluster"
-}
-variable "hostname" {
-  type        = string
-  description = "Scalr hostname"
+variable "cluster_endpoint" {
+  type = string
 }
 
-variable "workspace" {
-  type        = string
-  description = "Workspace"
+variable "cluster_ca_cert" {
+  type = string
+}
+
+variable "client_certificate" {
+  type = string
+}
+
+variable "client_key" {
+  type = string
 }

@@ -5,5 +5,4 @@ resource "helm_release" "prometheus" {
   version          = "6.9.3"
   create_namespace = true
   namespace        = "monitoring"
-  provider         = helm.gke
 }

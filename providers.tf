@@ -1,21 +1,9 @@
-provider "google" {
-  alias   = "gke"
-  project = local.project_id
-  region  = local.region
-}
-
-provider "kubernetes" {
-  alias                  = "gke"
-  host                   = local.host
-  cluster_ca_certificate = local.cluster_ca_certificate
-  token                  = local.token
-}
-
 provider "helm" {
-  alias = "gke"
   kubernetes {
-    host                   = local.host
-    cluster_ca_certificate = local.cluster_ca_certificate
-    token                  = local.token
+    host = var.cluster_endpoint
+
+    client_certificate     = base64decode(var.client_certificate)
+    client_key             = base64decode(var.client_key)
+    cluster_ca_certificate = base64decode(var.cluster_ca_cert)
   }
 }

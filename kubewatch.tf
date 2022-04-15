@@ -21,5 +21,4 @@ resource "helm_release" "kubewatch" {
     name  = "slack.token"
     value = var.slack_app_token
   }
-  provider = helm.gke
 }
